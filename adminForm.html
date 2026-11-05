@@ -1,0 +1,33 @@
+{% extends "_baseLayout.html" %} {% from "formField.html" import formField %} {%
+block page_header %} {% include "pageHeader.html" %} {% endblock page_header%}
+{% block main_content %}
+<div class="container px-4 px-lg-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <form action="{{ action }}" method="POST">
+        {{ formField("title", "Title", "text", post.title | default("")) }} {{
+        formField("teaser", "Teaser", "text", post.teaser | default("")) }} {{
+        formField("author", "Author", "text", post.author | default("")) }}
+
+        <div class="form-floating mb-3">
+          <textarea
+            class="form-control"
+            id="content"
+            name="content"
+            placeholder="Content"
+            style="height: 250px"
+            required
+          >
+          {{ post.content | default("") }}</textarea
+          >
+          <label for="content">Content</label>
+        </div>
+
+        <button class="btn btn-primary text-uppercase" type="submit">
+          {{ submitLabel }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main_content %} {% block pager %} {% endblock pager %}

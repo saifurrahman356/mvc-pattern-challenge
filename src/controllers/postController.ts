@@ -1,13 +1,6 @@
 import { Request, Response } from "express";
 import { getAllPosts, getPostBySlug, slugify } from "../models/postModel";
-
-function formatDate(unix: number): string {
-  return new Date(unix * 1000).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
+import { formatDate } from "./utils";
 
 export function showPosts(req: Request, res: Response) {
   const authorFilter =

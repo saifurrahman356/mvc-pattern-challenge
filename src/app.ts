@@ -6,6 +6,7 @@ import postsRouter from "./routes/postRoutes";
 import aboutRouter from "./routes/aboutRoutes";
 import contactRouter from "./routes/contactRoutes";
 import examplePostRouter from "./routes/examplePostRoutes";
+import adminRouter from "./routes/adminRoutes";
 
 const app = express();
 
@@ -16,12 +17,14 @@ const assetsDir = path.join(projectRoot, "src", "assets");
 const cssDir = path.join(projectRoot, "src", "css");
 
 nunjucks.configure(projectRoot, { autoescape: true, express: app });
+app.use(express.urlencoded({ extended: true }));
 app.use("/assets", express.static(assetsDir));
 app.use("/css", express.static(cssDir));
 app.use(postsRouter);
 app.use(aboutRouter);
 app.use(contactRouter);
 app.use(examplePostRouter);
+app.use("/admin", adminRouter);
 
 const port = Number(process.env.PORT) || 3000;
 

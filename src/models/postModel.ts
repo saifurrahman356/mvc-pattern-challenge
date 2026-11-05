@@ -95,3 +95,29 @@ export function getAllPosts(
     totalPages,
   };
 }
+
+export function createNewPost(newPost: Post): void {
+  const posts = loadPosts();
+  newPost.image = "flowers.jpg"; // Assign a default image
+  posts.push(newPost);
+}
+
+export function updatePost(slug: string, updatedPost: Partial<Post>): boolean {
+  const posts = loadPosts();
+  const index = posts.findIndex((post) => slugify(post.title) === slug);
+  if (index !== -1) {
+    posts[index] = { ...posts[index], ...updatedPost };
+    return true;
+  }
+  return false;
+}
+
+export function deletePost(slug: string): boolean {
+  const posts = loadPosts();
+  const index = posts.findIndex((post) => slugify(post.title) === slug);
+  if (index !== -1) {
+    posts.splice(index, 1);
+    return true;
+  }
+  return false;
+}
