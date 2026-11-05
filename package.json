@@ -1,0 +1,28 @@
+{
+  "name": "mvc-pattern-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "tsx src/app.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nunjucks": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
+    "@types/nunjucks": "^3.2.6",
+    "nodemon": "^3.1.10",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  }
+}
