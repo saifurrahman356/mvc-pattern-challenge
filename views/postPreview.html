@@ -5,7 +5,9 @@
   </a>
   <p class="post-meta">
     Posted by
-    <a href="#{{ post.author | lower | replace(' ', '-')}}">{{ post.author }}</a>
+    <a href="#{{ post.author | lower | replace(' ', '-')}}"
+      >{{ post.author }}</a
+    >
     {{ post.createdAt }}
   </p>
 </div>

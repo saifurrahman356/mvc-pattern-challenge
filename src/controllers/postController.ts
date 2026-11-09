@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
-import { getAllPosts, getPostBySlug, slugify } from "../models/postModel";
-import { formatDate } from "./utils";
 
-export function showPosts(req: Request, res: Response) {
+import { formatDate } from "./utils";
+import { slugify } from "../models/utils";
+import { getAllPosts, getPostBySlug } from "../models/postModelDB";
+
+export async function showPosts(req: Request, res: Response) {
   const authorFilter =
     typeof req.query.author === "string" ? req.query.author.trim() : "";
   const sort = req.query.sort === "oldest" ? "oldest" : "newest";
@@ -12,7 +14,7 @@ export function showPosts(req: Request, res: Response) {
       ? Math.max(1, Number(req.query.page))
       : 1;
 
-  const pagedPosts = getAllPosts(authorFilter, sort, page);
+  const pagedPosts = await getAllPosts(authorFilter, sort, page);
 
   const view = pagedPosts.posts.map((post) => ({
     ...post,
@@ -33,7 +35,7 @@ export function showPosts(req: Request, res: Response) {
   });
 }
 
-export function showPost(req: Request<{ slug: string }>, res: Response) {
+export async function showPost(req: Request<{ slug: string }>, res: Response) {
   const slug = req.params.slug;
 
   if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
@@ -41,14 +43,14 @@ export function showPost(req: Request<{ slug: string }>, res: Response) {
     return;
   }
 
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     res.status(404).send("Post not found");
     return;
   }
 
-  res.render("post.html", {
+  res.render("admin/post.html", {
     post: { ...post, createdAt: formatDate(post.createdAt) },
   });
 }

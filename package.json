@@ -4,23 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
-    "start": "tsx src/app.ts",
-    "typecheck": "tsc --noEmit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "bun run db:seed && bun --watch src/app.ts",
+    "start": "bun src/index.ts",
+    "typecheck": "bunx tsc --noEmit",
+    "db:seed": "sqlite3 db/blog.db < db/seeddb.sql"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "sanitize-html": "^2.18.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.6",
     "@types/node": "^24.10.1",
     "@types/nunjucks": "^3.2.6",
+    "@types/sanitize-html": "^2.16.2",
     "nodemon": "^3.1.10",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"

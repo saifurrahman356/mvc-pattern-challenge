@@ -7,6 +7,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="post-heading">
+          {% if post %}
           <h1>{{ post.title }}</h1>
           <h2 class="subheading">{{ post.teaser }}</h2>
           <span class="meta">
@@ -14,6 +15,9 @@
             <a href="#!">{{ post.author }}</a>
             on {{ post.createdAt }}
           </span>
+          {% else %}
+          <h1>Create New Post</h1>
+          {% endif %}
         </div>
       </div>
     </div>

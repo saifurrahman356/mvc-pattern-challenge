@@ -11,8 +11,8 @@ import {
 const router = Router();
 router.get("/", showPostsForAdmin);
 router.get("/posts/new", showNewPostFormForAdmin);
-router.post("/posts", createNewPostForAdmin);
 router.get("/posts/:slug/edit", showEditablePostFormForAdmin);
+router.post("/posts", createNewPostForAdmin);
 router.post("/posts/:slug", updatePostForAdmin);
 router.post("/posts/:slug/delete", deletePostForAdmin);
 export default router;

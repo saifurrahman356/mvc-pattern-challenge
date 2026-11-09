@@ -1,0 +1,58 @@
+{% extends "layouts/_baseLayout.html" %} {% from "partials/formField.html"
+import formField %} {% block page_header %} {% include
+"partials/pageHeader.html" %} {% endblock page_header %} {% block main_content
+%}
+<div class="container px-4 px-lg-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      {% if error %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ error }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endif %}
+
+      <form action="{{ action }}" method="POST">
+        {{ formField("title", "Title", "text", post.title | default("")) }} {{
+        formField("teaser", "Teaser", "text", post.teaser | default("")) }} {{
+        formField("author", "Author", "text", post.author | default("")) }} {{
+        formField("image", "Image", "text", post.image | default("")) }} {#
+        <div class="form-floating mb-3">
+          <textarea
+            class="form-control"
+            id="content"
+            name="content"
+            placeholder="Content"
+            style="height: 250px"
+            required
+          >
+          {{ post.content | default("") }}</textarea
+          >
+          <label for="content">Content</label>
+        </div>
+        #}
+
+        <div class="mb-3">
+          <label class="form-label" for="editor">Content</label>
+
+          <div id="editor" style="min-height: 300px"></div>
+
+          {# Hidden field submitted to Express #}
+          <textarea id="content" name="content" hidden>
+          {{ post.content if post else "" }}</textarea
+          >
+        </div>
+
+        <button class="btn btn-primary text-uppercase" type="submit">
+          {{ submitLabel }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main_content %} {% block pager %}{% endblock pager %}

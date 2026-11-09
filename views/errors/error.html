@@ -1,0 +1,25 @@
+{% extends "layouts/_baseLayout.html" %} {% block page_header %} {% include
+"partials/pageHeader.html" %} {% endblock page_header %} {% block main_content
+%}
+<div class="container px-4 px-lg-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <div class="text-center py-5">
+        <h2 class="mb-3">{{ title | default("Something went wrong") }}</h2>
+
+        <div class="alert alert-danger" role="alert">
+          {{ error | default("An unexpected error occurred. Please try again.")
+          }}
+        </div>
+
+        <a
+          href="{{ backUrl | default('/') }}"
+          class="btn btn-primary text-uppercase"
+        >
+          {{ backLabel | default("Go Back") }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main_content %} {% block pager %}{% endblock pager %}

@@ -1,0 +1,29 @@
+{% extends "layouts/_baseLayout.html" %} {% block main_content %}
+<div class="container px-4 px-lg-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <h2 class="text-center mt-5 mb-4">Admin Login</h2>
+
+      {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <label for="password" class="form-label"> Password </label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main_content %}{% block pager %}{% endblock pager %}
